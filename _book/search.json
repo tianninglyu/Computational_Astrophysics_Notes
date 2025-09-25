@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "计算天体物理学笔记",
+    "section": "",
+    "text": "Preface\n这是笔者学习计算天体物理学的笔记。",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "computer.html",
+    "href": "computer.html",
+    "title": "1  计算机基础",
+    "section": "",
+    "text": "1.1 CPU基础知识",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>计算机基础</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "2  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "computer.html#数在计算机中的表示",
+    "href": "computer.html#数在计算机中的表示",
+    "title": "1  计算机基础",
+    "section": "1.2 数在计算机中的表示",
+    "text": "1.2 数在计算机中的表示\n\n1.2.1 整数\n整数在计算机中以位(bit)为单位编码。1字节(byte)=8位(bits).一个整型变量可以表示多大范围的数，取决于它占用多少字节，以及它是有符号还是无符号的。有符号整数会占用一位表示符号，因此一个占据N位的有符号整数可以表示\\(-2^{N-1}\\) ~ \\(2^{N-1}-1\\) 的整数，而无符号整数则可表示\\(0\\) ~ \\(2^{N}\\). 下表整理了天文工作者科研中最常用的几种编程语言里不同种类的整型变量的特性。\n\n\n\n\n\n\n\n\n\n\n语言\n类型\n常见字节数\n位数\n取值范围\n\n\n\n\nC / C++\nchar\n1\n8\n有符号：-128 ~ 127无符号：0 ~ 255\n\n\n\nshort\n2\n16\n有符号：-32,768 ~ 32,767无符号：0 ~ 65,535\n\n\n\nint\n4\n32\n有符号：-2,147,483,648 ~ 2,147,483,647无符号：0 ~ 4,294,967,295\n\n\n\nlong\n8 (在 64 位 LP64) / 4 (在 Windows LLP64)\n64 / 32\n-2^63 ~ 2^63-1 或 -2^31 ~ 2^31-1\n\n\n\nlong long\n8\n64\n有符号：-9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807无符号：0 ~ 18,446,744,073,709,551,615\n\n\nFortran\nINTEGER(KIND=1)\n1\n8\n-128 ~ 127\n\n\n\nINTEGER(KIND=2)\n2\n16\n-32,768 ~ 32,767\n\n\n\nINTEGER(KIND=4)\n4\n32\n-2,147,483,648 ~ 2,147,483,647\n\n\n\nINTEGER(KIND=8)\n8\n64\n-9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807\n\n\nPython\nint\n不固定（内部按 28/30 位一组存储）\n理论无限\n仅受内存限制。例如：2**1000 也能正常表示\n\n\n\n对于极大规模的数值模拟，整型变量精度的选择对于存储空间的消耗有着重大影响。例如Gadget-4代码，支持用户选择用32位还是64位整数来表示粒子的ID. 此时模拟执行者应该进行计算，如果模拟的粒子数没有超出32位整数可以表示的范围，就应当使用32位整数来存储粒子ID，可以节约一半的存储。\n\n\n1.2.2 浮点数\n计算机中储存浮点数的基本原理是将其表示为二进制的“科学计数法”： \\[\nx=sM2^e\n\\]\n其中\\(s\\)意为”sign”，符号；\\(M\\)意为”mantissa”，尾数；\\(e\\)意为”exponent”，指数。不同精度的浮点数，分配给它们的位数也不同。在IEEE-754标准中：\n单精度 (single precision): 1s+8e+23M\n双精度 (double precision): 1s+11e+52M\n四精度 (quadruple decision): 1s+15e+112M\n对于天体物理数值模拟，大部分时候采用双精度计算；但AI训练等场景可能就更需要单精度计算。针对不同应用场景的算力卡(GPU/DCU)会因地制宜地增强应用频率高的计算单元，削弱应用频率低的计算单元。在规划大规模算力任务时，一定要根据自己的需求选择合适的集群硬件配置。",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>计算机基础</span>"
+    ]
+  },
+  {
+    "objectID": "computer.html#误差",
+    "href": "computer.html#误差",
+    "title": "1  计算机基础",
+    "section": "1.3 误差",
+    "text": "1.3 误差\n\n1.3.1 舍入误差 (Round off Errors)\n浮点数在计算机中占的位数是有限的，这使得浮点数在计算机中无法被完全精确地表示。\n\n1e16 + 1 - 1e16\n\n0.0",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>计算机基础</span>"
+    ]
+  }
+]
